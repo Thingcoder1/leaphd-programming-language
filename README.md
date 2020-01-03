@@ -1,2 +1,3 @@
-# RealityCheck
-A GROVER-based fake news detection system bot for reddit
+# Ai-Fun
+A reddit bot for interacting with ai
+currently only uses the GPT-2-1558M model from Openai
