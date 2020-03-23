@@ -1,18 +1,9 @@
-with open('lexer.txt') as f:
-    base = f.readlines()
-    f.close()
-base = [x.strip() for x in base]
-print(base)
-
-with open('test.lpd','r') as lpdf:
-    prog = lpdf.read()
-lex = []
-
-print(type(3))
-print(str(type(3))=='<class \'int\'>')
-
-for i in range(len(prog)):
-    if prog[i].isdigit() == True:
-        print('int found!')
-    else:
-        print('not an int')
+from pyparsing import Word, nums, alphas
+int  =  Word(nums)            # simple unsigned integer
+var = Word(alphas)   # single letter variable, such as x, z, m, etc.
+math  = Word('+-*/', max=1)   # arithmetic operators
+eql = Word('=')
+bool = Word('==')
+equation = var + eql + int + math + int    # will match "x=2+2", etc.
+print(equation.parseString('alp = 23 * 3'))
+ 
