@@ -3,7 +3,7 @@ from pyparsing import Word, nums, alphas, alphanums # dependencies
 # these are the types of "parts of speech" (tokens) i.e.: int, variables, comma, you get the idea
 int  =  Word(nums)
 var = Word(alphas, alphanums+"-_")
-math = Word('+-*/', max=1)
+math = Word('+-*/^%', max=1)
 eql = Word('=')
 eol = Word(';')
 dec = Word(':')
@@ -44,28 +44,19 @@ for i,char in enumerate(lpd):
         intstring += char
 
     #testing for chars to put in charlist
-    if char.isalpha() == True :
+    if char.isalpha() == True:
         charstring += char
 
     else:
         #testing for digits to put in lexed
         if char.isdigit() == False:
             lexed.append(intstring)
+            lexed.append(charstring)
             intstring = ''
+            charstring = ''
             lexed.append(char)
             charprinted = 1 #this is to tell the program not to duplicate
-                            #chars b/c it already got one
-
-        #testing for chars to put in lexed
-        if char.isalpha() == False and char.isdigit() == False:
-            #check if it already lexed a char
-            if charprinted == 1:
-                pass
-            elif charprinted != 1 and charprinted == 0:
-                lexed.append(charstring)
-                charstring = ''
-                lexed.append(char)
-                charprinted = 0#reset it to make sure it can lex chars again
+                            #chars b/c it already got one in the list
 
 #the list for the chars w/ labels
 parsedLex = []
@@ -79,4 +70,5 @@ for i in range(len(lexed)):
             parsedLex.append([nameset[a],lexed[i]])#format of [name,char]
         except:
             pass
+
 print(parsedLex)#print out the list of parsed lexed chars
