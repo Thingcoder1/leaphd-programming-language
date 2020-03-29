@@ -67,7 +67,7 @@ for i in range(len(lexed)):
         #try to get rid of this to improve efficency
         try:
             lexset[a].parseString(lexed[i])
-            parsedLex.append([nameset[a],lexed[i]])#format of [name,char]
+            parsedLex.append((nameset[a],lexed[i]))#format of [name,char]
         except:
             pass
 
