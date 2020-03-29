@@ -19,7 +19,7 @@ lexset = [int,var,math,eql,eol,dec,opa,cpa,sep,pnt,fwa,bka]
 #the names of the token types
 nameset = ['int','var','math','eql','eol','dec','opa','cpa','sep','pnt','fwa','bka']
 
-def lex(filename):
+def lex(filename): #made the lexer a function so it can be called by the parser
     #opening the selected .lpd document
     with open(filename, 'r') as f:
         lpd = f.read()
