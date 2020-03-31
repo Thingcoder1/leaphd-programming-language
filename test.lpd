@@ -1,1 +1,7 @@
 :a=(1+2-3+4/5*(6^7)%9)/10*11;
+
+:stringTest = 'this is a string!'
+
+if(a == 1;){
+  printl('a = 1')
+};
