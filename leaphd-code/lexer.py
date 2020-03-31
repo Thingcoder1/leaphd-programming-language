@@ -62,7 +62,7 @@ def lex(filename): #made the lexer a function so it can be called by the parser
     #the list for the chars w/ labels
     parsedLex = []
 
-    lexed = [x for x in lexed if x.strip()]
+    lexed = [x for x in lexed if x.strip()] #stripping lexed list of whitespace and newlines as well as this: ''
     #for loop
     for i in range(len(lexed)):
         for a in range(len(lexset)):
