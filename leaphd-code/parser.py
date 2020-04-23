@@ -41,6 +41,7 @@ def parse(filename):
         parsedTree[i][1][1][0] = parsedTree[i][1][1][0].strip()
     #print out the tree (TESTING ONLY).
     print(parsedTree)
+    
     #return the tree.
     return parsedTree
 
