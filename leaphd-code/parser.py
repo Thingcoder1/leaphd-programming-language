@@ -43,5 +43,6 @@ def parse(filename):
     print(parsedTree)
     #return the tree.
     return parsedTree
+
 #this is only for testing.
 parse('test.lpd')
