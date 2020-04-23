@@ -13,12 +13,13 @@ sep = Word(',')
 pnt = Word('.')
 fwa = Word('>')
 bka = Word('<')
+qstn = Word('?')
 str = Word('\'"')
 
 #set of these token types
-lexset = [num,var,math,eql,eol,dec,opa,cpa,sep,pnt,fwa,bka,str]
+lexset = [num,var,math,eql,eol,dec,opa,cpa,sep,pnt,fwa,bka,str,qstn]
 #the names of the token types
-nameset = ['num','var','math','eql','eol','dec','opa','cpa','sep','pnt','fwa','bka','str']
+nameset = ['num','var','math','eql','eol','dec','opa','cpa','sep','pnt','fwa','bka','str','qstn']
 
 def lex(filename): #made the lexer a function so it can be called by the parser
     #opening the selected .lpd document
