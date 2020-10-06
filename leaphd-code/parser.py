@@ -1,5 +1,5 @@
 import lexer
-
+'''
 parsedTree = []
 def parse(filename):
     #get the lexed tokens
@@ -47,3 +47,9 @@ def parse(filename):
 
 #this is only for testing.
 parse('test.lpd')
+'''
+#this is old code
+#lets rewrite it for fun!
+
+with open('test.lpd', 'r') as f:
+    print(f)
