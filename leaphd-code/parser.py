@@ -8,14 +8,28 @@ def parse(filename):
     vartypes = ['int']
     variables = []
     operations = []
+    #control variables
+    setvar = 0
+    newvar = 0
+    quotes = 0
 
     for i in range(len(tokens)):
         if tokens[i][0] == 'dec':
             newvar = 1
         if tokens[i][0] == 'string' and tokens[i][1] in vartypes and newvar == 1:
             variables.append(['', tokens[i][1], ''])
-        if tokens[i][0] == 'string' and tokens[i][1] not in vartypes and newvar == 1:
+        if tokens[i][0] == 'string' and tokens[i][1] not in vartypes and newvar == 1 and setvar == 0:
             variables[-1][0] = tokens[i][1]
+        if tokens[i][0] == 'eql' and newvar == 1:
+            setvar = 1
+        if tokens[i][0] == 'quote':
+            if quotes == 0:
+                quotes = 1
+            elif quotes == 1:
+                quotes = 0
+        if tokens[i][0] == 'num' and setvar == 1:
+            variables[-1][2] = tokens[i][1] + ' '
+
     print(variables)
     print(tokens)
 
