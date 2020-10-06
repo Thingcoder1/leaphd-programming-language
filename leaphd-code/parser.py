@@ -1,4 +1,12 @@
 import lexer
+
+#this is old code
+#lets rewrite it for fun!
+path_to_file = '/home/ian/github/leaphd-programming-language/leaphd-code/test.lpd'
+
+print(lexer.lex(path_to_file))
+
+
 '''
 parsedTree = []
 def parse(filename):
@@ -48,8 +56,3 @@ def parse(filename):
 #this is only for testing.
 parse('test.lpd')
 '''
-#this is old code
-#lets rewrite it for fun!
-
-with open('test.lpd', 'r') as f:
-    print(f)

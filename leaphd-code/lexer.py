@@ -2,7 +2,7 @@ from pyparsing import Word, nums, alphas, alphanums # dependencies
 
 # these are the types of "parts of speech" (tokens) i.e.: int, variables, comma, you get the idea
 num  =  Word(nums)
-var = Word(alphas, alphanums+"-_")
+string = Word(alphas, alphanums+"-_")
 math = Word('+-*/^%!', max=1)
 eql = Word('=')
 eol = Word(';')
@@ -14,12 +14,12 @@ pnt = Word('.')
 fwa = Word('>')
 bka = Word('<')
 qstn = Word('?')
-str = Word('\'"')
+quote = Word('\'"')
 
 #set of these token types
-lexset = [num,var,math,eql,eol,dec,opa,cpa,sep,pnt,fwa,bka,str,qstn]
+lexset = [num,string,math,eql,eol,dec,opa,cpa,sep,pnt,fwa,bka,quote,qstn]
 #the names of the token types
-nameset = ['num','var','math','eql','eol','dec','opa','cpa','sep','pnt','fwa','bka','str','qstn']
+nameset = ['num','string','math','eql','eol','dec','opa','cpa','sep','pnt','fwa','bka','quote','qstn']
 
 def lex(filename): #made the lexer a function so it can be called by the parser
     #opening the selected .lpd document
