@@ -1,12 +1,29 @@
 import lexer
 
-#this is old code
-#lets rewrite it for fun!
 path_to_file = '/home/ian/github/leaphd-programming-language/leaphd-code/test.lpd'
 
-print(lexer.lex(path_to_file))
+def parse(filename):
+    #things to store
+    tokens = lexer.lex(filename)
+    vartypes = ['int']
+    variables = []
+    operations = []
+
+    for i in range(len(tokens)):
+        if tokens[i][0] == 'dec':
+            newvar = 1
+        if tokens[i][0] == 'string' and tokens[i][1] in vartypes and newvar == 1:
+            variables.append(['', tokens[i][1], ''])
+        if tokens[i][0] == 'string' and tokens[i][1] not in vartypes and newvar == 1:
+            variables[-1][0] = tokens[i][1]
+    print(variables)
+    print(tokens)
+
+parse(path_to_file)
 
 
+#this is old code
+#lets rewrite it for fun!
 '''
 parsedTree = []
 def parse(filename):
