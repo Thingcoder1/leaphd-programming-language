@@ -35,7 +35,6 @@ def parse(filename):
 
 parse(path_to_file)
 
-
 #this is old code
 #lets rewrite it for fun!
 '''
