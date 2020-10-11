@@ -2,7 +2,6 @@ package lexer
 
 import (
 	"io/ioutil"
-	//"strconv"
 	"strings"
 )
 
