@@ -27,12 +27,12 @@ func Lex(pathToFile string) []string {
 
 		// checks if tempvar is a separator
 		// if it isn't append the character to the string
-		if strings.ContainsAny(tempChar, " ()[]{}~!@#$%^&*-=_+|\\?/><,.:;") != true {
-			if strings.ContainsAny(charString, "~!@#$%^&*-=_+|\\?/><,.:;") {
+		if strings.ContainsAny(tempChar, " ()[]{}~!@#$%^&*-=_+|\\?/><,.:;\n") != true {
+			if strings.ContainsAny(charString, "~!@#$%^&*-=_+|\\?/><,.:;\n") {
 				tokenList = append(tokenList, charString)
 				charString = ""
 				charString = charString + tempChar
-			} else if strings.ContainsAny(charString, "~!@#$%^&*-=_+|\\?/><,.:;") != true {
+			} else if strings.ContainsAny(charString, "~!@#$%^&*-=_+|\\?/><,.:;\n") != true {
 				charString = charString + tempChar
 			}
 			// if it is a space, don't and set charString to blank value
@@ -48,10 +48,10 @@ func Lex(pathToFile string) []string {
 			} else {
 				tokenList = append(tokenList, tempChar)
 			}
-		} else if strings.ContainsAny(tempChar, "~!@#$%^&*-=_+|\\?/><,.:;") {
+		} else if strings.ContainsAny(tempChar, "~!@#$%^&*-=_+|\\?/><,.:;\n") {
 			if strings.ContainsAny(charString, "~!@#$%^&*-=_+|\\?/><,.:;") {
 				charString = charString + tempChar
-			} else if strings.ContainsAny(charString, "~!@#$%^&*-=_+|\\?/><,.:;") != true {
+			} else if strings.ContainsAny(charString, "~!@#$%^&*-=_+|\\?/><,.:;\n") != true {
 				if charString != "" {
 					tokenList = append(tokenList, charString)
 					charString = ""
