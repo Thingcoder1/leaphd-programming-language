@@ -37,8 +37,10 @@ func Lex(pathToFile string) []string {
 			}
 			// if it is a space, don't and set charString to blank value
 		} else if tempChar == " " {
-			tokenList = append(tokenList, charString)
-			charString = ""
+			if charString != "" {
+				tokenList = append(tokenList, charString)
+				charString = ""
+			}
 			// if it is a separater, append the string, then separator, then make charString = ""
 		} else if strings.ContainsAny(tempChar, "()[]{}") {
 			if charString != "" {
@@ -64,7 +66,9 @@ func Lex(pathToFile string) []string {
 		}
 		// makes sure that if the end of the file is reached, it appends charString
 		if i == len(data)-1 {
-			tokenList = append(tokenList, charString)
+			if charString != "" {
+				tokenList = append(tokenList, charString)
+			}
 		}
 
 		// while appending, converts the datatype to string instead of byte

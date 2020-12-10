@@ -1,2 +1,6 @@
-x->9
-y->10
+myVar <- 1234
+
+myFunc {a, b int}{c int} <- {
+    c <- a * b
+    return c
+}
