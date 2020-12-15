@@ -1,6 +1,8 @@
-myVar <- 1234
+myVar <- 7
 
-myFunc {a, b int}{c int} <- {
-    c <- a * b
-    return c
+myFunc {a, b, c int}{int} <- {
+    d <- (a * b) - c
+    return d
 }
+
+print myfunc myvar 2

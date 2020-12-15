@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 	"github.com/ipratt-code/leaphd/toolchain"
-	//"github.com/ipratt-code/leaphd/parser"
 )
 
 func main() {
-	fmt.Printf("File contents: %v \n", toolchain.Lex("program.lpd"))
+	fmt.Printf("File contents: %#v \n", toolchain.Lex("program.lpd"))
+	toolchain.Parse(toolchain.Lex("program.lpd"))
 }
