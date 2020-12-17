@@ -1,7 +1,7 @@
-myVar <- 7
+myVar:7
 
-myFunc {a, b, c int}{int} <- {
-    d <- (a * b) - c
+myFunc {a, b, c int}{int}:{
+    d:(a * b) - c
     return d
 }
 
