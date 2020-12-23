@@ -5,6 +5,11 @@ import (
 	"strings"
 )
 
+type token struct {
+	value string
+	tType string
+}
+
 // Lex lexes the file into tokes for the parser
 func Lex(pathToFile string) []string {
 	// reads the file
@@ -14,10 +19,10 @@ func Lex(pathToFile string) []string {
 		panic(err)
 	}
 	// makes the list
-	tokenList := make([]string, 0, len(data))
+	tokenList := []token{}
 
 	// makes the string that holds the tokens
-	var charString string
+	var charString token
 
 	// for loop to append the characters of the file to the list of tokens
 	for i := 0; i <= len(data)-1; i++ {
@@ -28,27 +33,33 @@ func Lex(pathToFile string) []string {
 		// checks if tempvar is a separator
 		// if it isn't append the character to the string
 		if strings.ContainsAny(tempChar, " ()[]{}~!@#$%^&*-=_+|\\?/><,.:;\n") != true {
-			if strings.ContainsAny(charString, "~!@#$%^&*-=_+|\\?/><,.:;\n") {
+			if strings.ContainsAny(charString.value, "\"") {
+				charString.tType = "quote"
 				tokenList = append(tokenList, charString)
-				charString = ""
-				charString = charString + tempChar
-			} else if strings.ContainsAny(charString, "~!@#$%^&*-=_+|\\?/><,.:;\n") != true {
-				charString = charString + tempChar
+			}
+			if strings.ContainsAny(charString.value, "~!@#$%^&*-=_+|\\?/><,.:;\n") {
+				tokenList = append(tokenList, charString)
+				charString.value, charString.tType = "", ""
+				charString.value = charString.value + tempChar
+			} else if strings.ContainsAny(charString.value, "~!@#$%^&*-=_+|\\?/><,.:;\n") != true {
+				charString.value = charString.value + tempChar
 			}
 			// if it is a space, don't and set charString to blank value
 		} else if tempChar == " " {
-			if charString != "" {
+			if charString.value != "" {
 				tokenList = append(tokenList, charString)
-				charString = ""
+				charString.value, charString.tType = "", ""
 			}
 			// if it is a separater, append the string, then separator, then make charString = ""
 		} else if strings.ContainsAny(tempChar, "()[]{}") {
-			if charString != "" {
+			if charString.value != "" {
 				tokenList = append(tokenList, charString)
-				tokenList = append(tokenList, tempChar)
-				charString = ""
+				charString.value, charString.tType = tempChar, "bracket"
+				tokenList = append(tokenList, charString)
+				charString.value, charString.type= "", ""
 			} else {
-				tokenList = append(tokenList, tempChar)
+				charString.value, charString.tType = tempChar, ""
+				tokenList = append(tokenList, charString)
 			}
 		} else if strings.ContainsAny(tempChar, "~!@#$%^&*-=_+|\\?/><,.:;\n") {
 			if strings.ContainsAny(charString, "~!@#$%^&*-=_+|\\?/><,.:;") {

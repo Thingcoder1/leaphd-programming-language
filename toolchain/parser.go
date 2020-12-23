@@ -5,6 +5,20 @@ import (
 	"strconv"
 )
 
+type operation struct {
+	operand string
+	val1    string
+	val2    string
+	outType string
+}
+
+type function struct {
+	funcname   string
+	inputs     []string
+	outputs    []string
+	operations [][]operation
+}
+
 // Parse parses the token list from lexer
 func Parse(tokenList []string) {
 	progLines := [][]string{}

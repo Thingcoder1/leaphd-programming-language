@@ -6,6 +6,6 @@ import (
 )
 
 func main() {
-	fmt.Printf("File contents: %#v \n", toolchain.Lex("program.lpd"))
+	fmt.Printf("File contents: %v \n", toolchain.Lex("program.lpd"))
 	toolchain.Parse(toolchain.Lex("program.lpd"))
 }
