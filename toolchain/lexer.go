@@ -1,6 +1,6 @@
 package toolchain
 
-import "fmt"
+//import "fmt"
 
 // ContextState is the state of the context
 type ContextState int
@@ -12,15 +12,19 @@ const (
 
 // Lexer this is the structure of our lexer
 type Lexer struct {
-	In      chan string
-	curChar string
-	curCtx  ContextState
+	In       chan string
+	curChar  string
+	curCtx   ContextState
+	keywords []string
+	buf      string
 }
 
 // NewLexer makes a new Lexer structure
 func NewLexer(in chan string) *Lexer {
 	return &Lexer{
-		In: in,
+		In:       in,
+		curCtx:   START,
+		keywords: make([]string{"quit"}, 0),
 	}
 }
 
@@ -41,6 +45,16 @@ func (lexer *Lexer) process(loc string) error {
 	}
 	switch lexer.curCtx {
 	case START:
+		handler.buf += lexer.curChar
 	}
 	return nil
+}
+
+func (lexer *Lexer) stringInSlice(str string, list []string) bool {
+	for _, v in range list {
+		if list[v] == str {
+			return true
+		}
+	}
+	return false
 }
