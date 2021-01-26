@@ -2,24 +2,16 @@ package main
 
 import (
 	"bufio"
-	"fmt"
-	"github.com/ipratt-code/hexal/toolchain"
 	"os"
+
+	"github.com/ipratt-code/hexal/toolchain"
 )
 
 func main() {
-	lic := make(chan string)
-	lexer := toolchain.NewLexer(lic)
-
-	go lexer.Run()
-
+	reader := bufio.NewReader(os.Stdin)
 	for {
-		r := bufio.NewReader(os.Stdin)
-		fmt.Print(">")
-		t, err := r.ReadString('\n')
-		if err != nil {
-			panic(err)
-		}
-		lexer.In <- t
+		print("[ ]: ")
+		txt, _ := reader.ReadString('\n')
+		toolchain.Lex(txt)
 	}
 }
